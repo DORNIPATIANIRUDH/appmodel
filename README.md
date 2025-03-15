@@ -1,10 +1,23 @@
-# 🎈 Blank app template
+# 🍎 Fruit & Vegetable Classifier 🍌
 
-A simple Streamlit app template for you to modify!
+A **Streamlit** app that classifies **fruit and vegetable slices** into three categories:  
+✅ **Fresh**  
+✅ **Rotten**  
+✅ **Dried**  
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+The model is built using **TensorFlow/Keras** and provides a user-friendly interface with **Streamlit**.
 
-### How to run it on your own machine
+---
+
+## 🚀 Features  
+- 📸 **Upload an image** of a fruit or vegetable slice.  
+- 🔍 **Model prediction** using a pretrained **CNN (Convolutional Neural Network)**.  
+- 🎨 **Interactive UI** with Streamlit.  
+- 📊 **Confidence score** displayed for each classification.  
+
+---
+
+## ⚙️ Installation  
 
 1. Install the requirements
 
