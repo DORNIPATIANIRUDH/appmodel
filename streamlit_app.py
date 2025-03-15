@@ -67,9 +67,6 @@ if uploaded_file is not None:
     }
     
     predicted_set = frozenset(top_labels)
-    final_prediction = valid_combinations.get(predicted_set, None)
+    final_prediction = valid_combinations.get(predicted_set, "Unknown Combination")
     
-    if final_prediction:
-        st.write(f"\n**Final Prediction:** {final_prediction}")
-    else:
-        st.write("\n**Final Prediction:** " + " & ".join(top_labels))
+    st.write(f"\n**Final Prediction:** {final_prediction}")
