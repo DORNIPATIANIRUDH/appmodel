@@ -22,7 +22,7 @@ def create_model():
 model = create_model()
 
 # Define class labels
-CLASS_LABELS = ["Fresh", "Dried", "Not Rotten", "Rotten"]
+CLASS_LABELS = ["Fresh", "Dried", "Not Dried", "Rotten"]
 
 # Image preprocessing function
 def preprocess_image(image):
@@ -40,7 +40,7 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
     st.write("Processing...")
     
     # Preprocess image
@@ -56,17 +56,6 @@ if uploaded_file is not None:
     
     # Determine final prediction based on highest probabilities
     sorted_indices = np.argsort(predictions)[::-1]
-    top_labels = [CLASS_LABELS[i] for i in sorted_indices[:2]]
-    
-    # Define valid label combinations
-    valid_combinations = {
-        frozenset(["Fresh", "Dried"]): "Fresh and Dried",
-        frozenset(["Dried", "Rotten"]): "Dried and Rotten",
-        frozenset(["Dried", "Not Rotten"]): "Dried and Not Rotten",
-        frozenset(["Not Rotten", "Fresh"]): "Not Rotten and Fresh"
-    }
-    
-    predicted_set = frozenset(top_labels)
-    final_prediction = valid_combinations.get(predicted_set, "Unknown Combination")
+    final_prediction = f"{CLASS_LABELS[sorted_indices[0]]} and {CLASS_LABELS[sorted_indices[1]]}" if predictions[sorted_indices[1]] > 0.2 else CLASS_LABELS[sorted_indices[0]]
     
     st.write(f"\n**Final Prediction:** {final_prediction}")
